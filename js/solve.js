@@ -1,5 +1,7 @@
 import log from './utils/log';
 
+import './utils/array';
+
 const argv = require('yargs')
   .nargs('day', 1)
   .nargs('part', 1)
