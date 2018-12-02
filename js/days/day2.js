@@ -7,15 +7,14 @@ const input = readFile('input-2.txt')
   .filter(Boolean)
   .map(id => id.split(''));
 
-export const part1 = () => {
-  let [twos, threes] = [0, 0];
-  input.forEach(id => {
-    const vs = Object.values(countBy(id));
-    vs.includes(2) && ++twos;
-    vs.includes(3) && ++threes;
-  });
-  return twos * threes;
-};
+export const part1 = () =>
+  input
+    .map(id => Object.values(countBy(id)))
+    .reduce(
+      ([twos, threes], vs) => [twos + vs.includes(2), threes + vs.includes(3)],
+      [0, 0],
+    )
+    .reduce((p, c) => c * p, 1);
 
 const diff = (a, b) => {
   const common = a.filter((char, i) => char === b[i]);
