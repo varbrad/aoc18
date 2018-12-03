@@ -11,11 +11,11 @@ const input = readFile('input-3.txt')
   );
 
 const makeMap = input =>
-  input.reduce((map, [id, x, y, w, h, t]) => {
+  input.object((map, [id, x, y, w, h, t]) => {
     for (let Y = y; Y < y + h; ++Y)
       for (let X = x; X < x + w; ++X) map[(t = `${X},${Y}`)] = ++map[t] || 1;
     return map;
-  }, {});
+  });
 
 export const part1 = () =>
   Object.values(makeMap(input)).reduce((acc, val) => acc + (val > 1), 0);

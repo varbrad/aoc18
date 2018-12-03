@@ -49,3 +49,9 @@ Object.defineProperty(Array.prototype, 'until', {
     }
   },
 });
+
+Object.defineProperty(Array.prototype, 'object', {
+  value: function(fn) {
+    return this.reduce(fn, {});
+  },
+});
