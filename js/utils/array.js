@@ -55,3 +55,37 @@ Object.defineProperty(Array.prototype, 'object', {
     return this.reduce(fn, {});
   },
 });
+
+Object.defineProperty(Array.prototype, 'loop', {
+  value: function(fn, returnValue) {
+    if (this.length === 2) {
+      for (let i = this[0]; i < this[0] + this[1]; ++i) fn(i, returnValue);
+    } else if (this.length === 4) {
+      for (let i = this[0]; i < this[0] + this[2]; ++i) {
+        for (let j = this[1]; j < this[1] + this[3]; ++j) {
+          fn(i, j, returnValue);
+        }
+      }
+    }
+    return returnValue;
+  },
+});
+
+Object.defineProperty(Array.prototype, 'loopIf', {
+  value: function(fn, ifTrue, ifFalse) {
+    if (this.length === 2) {
+      for (let i = this[0]; i < this[0] + this[1]; ++i) {
+        const result = fn(i);
+        if (result) return ifTrue;
+      }
+    } else if (this.length === 4) {
+      for (let i = this[0]; i < this[0] + this[2]; ++i) {
+        for (let j = this[1]; j < this[1] + this[3]; ++j) {
+          const result = fn(i, j);
+          if (result) return ifTrue;
+        }
+      }
+    }
+    return ifFalse;
+  },
+});
