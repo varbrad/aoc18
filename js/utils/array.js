@@ -37,3 +37,15 @@ Object.defineProperty(Array.prototype, 'first', {
     return defaultValue;
   },
 });
+
+Object.defineProperty(Array.prototype, 'until', {
+  value: function(fn, ...include) {
+    const len = this.length;
+    while (true) {
+      for (let i = 0; i < len; ++i) {
+        const value = fn(this[i], ...include);
+        if (value) return value;
+      }
+    }
+  },
+});
