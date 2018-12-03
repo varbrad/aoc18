@@ -28,12 +28,12 @@ Object.defineProperty(Array.prototype, 'findCompare', {
 });
 
 Object.defineProperty(Array.prototype, 'first', {
-  value: function(fn) {
+  value: function(fn, defaultValue = null, ...include) {
     const len = this.length;
     for (let i = 0; i < len; ++i) {
-      const value = fn(this[i]);
+      const value = fn(this[i], ...include);
       if (value) return value;
     }
-    return undefined;
+    return defaultValue;
   },
 });

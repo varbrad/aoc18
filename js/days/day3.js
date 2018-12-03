@@ -3,40 +3,30 @@ import readFile from '../utils/readFile';
 const input = readFile('input-3.txt')
   .split('\n')
   .filter(Boolean)
-  .map(row => row.match(/#(\d+) @ (\d+),(\d+): (\d+)x(\d+)/));
+  .map(row =>
+    row
+      .match(/#(\d+) @ (\d+),(\d+): (\d+)x(\d+)/)
+      .slice(1)
+      .map(Number),
+  );
 
-const makeMap = input => {
-  const map = {};
-  input.forEach(row => {
-    const [_, id, x, y, w, h] = row.map(Number);
-    for (let Y = y; Y < y + h; ++Y) {
-      for (let X = x; X < x + w; ++X) {
-        const str = `${X}-${Y}`;
-        map[str] = map[str] || 0;
-        map[str]++;
-      }
-    }
-  });
-  return map;
-};
+const makeMap = input =>
+  input.reduce((map, [id, x, y, w, h, t]) => {
+    for (let Y = y; Y < y + h; ++Y)
+      for (let X = x; X < x + w; ++X) map[(t = `${X},${Y}`)] = ++map[t] || 1;
+    return map;
+  }, {});
 
-export const part1 = () => {
-  const map = makeMap(input);
-  return Object.values(map).reduce((acc, val) => acc + (val > 1), 0);
-};
+export const part1 = () =>
+  Object.values(makeMap(input)).reduce((acc, val) => acc + (val > 1), 0);
 
-export const part2 = () => {
-  const map = makeMap(input);
-  outer: for (let i = 0; i < input.length; ++i) {
-    const row = input[i];
-    const [_, id, x, y, w, h] = row.map(Number);
-    for (let Y = y; Y < y + h; ++Y) {
-      for (let X = x; X < x + w; ++X) {
-        const str = `${X}-${Y}`;
-        if (map[str] > 1) continue outer;
-      }
-    }
-    return id;
-  }
-  return 'who knows';
-};
+export const part2 = () =>
+  input.first(
+    ([id, x, y, w, h], map) => {
+      for (let Y = y; Y < y + h; ++Y)
+        for (let X = x; X < x + w; ++X) if (map[`${X},${Y}`] > 1) return false;
+      return id;
+    },
+    'who knows', // default return value
+    makeMap(input), // include the map to each row
+  );
