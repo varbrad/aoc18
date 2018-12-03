@@ -8,7 +8,7 @@ const argv = require('yargs')
   .describe('day', 'Which day to solve')
   .describe('part', 'Which part to solve').argv;
 
-const { day = 1, part = 0 } = argv;
+const { day = new Date().getDate(), part = 0 } = argv;
 
 const { part1, part2 } = eval(`require("./days/day${day}.js")`);
 
