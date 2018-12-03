@@ -12,7 +12,6 @@ const makeMap = input => {
     for (let Y = y; Y < y + h; ++Y) {
       for (let X = x; X < x + w; ++X) {
         const str = `${X}-${Y}`;
-        loops++;
         map[str] = map[str] || 0;
         map[str]++;
       }
