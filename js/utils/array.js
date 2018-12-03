@@ -26,3 +26,14 @@ Object.defineProperty(Array.prototype, 'findCompare', {
     return false;
   },
 });
+
+Object.defineProperty(Array.prototype, 'first', {
+  value: function(fn) {
+    const len = this.length;
+    for (let i = 0; i < len; ++i) {
+      const value = fn(this[i]);
+      if (value) return value;
+    }
+    return undefined;
+  },
+});
