@@ -1,5 +1,4 @@
 import readFile from '../utils/readFile';
-import { iif } from 'rxjs';
 
 const input = readFile('input-5.txt')
   .trim()
