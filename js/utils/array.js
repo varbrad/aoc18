@@ -89,3 +89,10 @@ Object.defineProperty(Array.prototype, 'loopIf', {
     return ifFalse;
   },
 });
+
+Object.defineProperty(Array.prototype, 'exclude', {
+  value: function(fn) {
+    const actualFn = item => !fn(item);
+    return this.filter(actualFn);
+  },
+});
