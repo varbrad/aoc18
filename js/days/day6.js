@@ -81,7 +81,7 @@ export const part2 = () => {
         const dist = distance(point, [x, y]);
         return sum + dist;
       }, 0);
-      if (total < 10000) safe++;
+      if (total < limit) safe++;
     }
   }
   return safe;

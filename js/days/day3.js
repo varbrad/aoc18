@@ -11,7 +11,7 @@ const input = readFile('input-3.txt')
   );
 
 const makeMap = input =>
-  input.object((map, [id, ...rect]) =>
+  input.object((map, [, ...rect]) =>
     rect.loop((x, y) => (map[`${x},${y}`] = ++map[`${x},${y}`] || 1), map),
   );
 

@@ -5,7 +5,8 @@
   "author": "Brad Davies <varbrad@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
-    "solve": "babel-node ./js/solve.js"
+    "solve": "babel-node ./js/solve.js",
+    "lint": "eslint js/days"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",

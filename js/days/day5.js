@@ -10,7 +10,7 @@ const isLetter = letter => code => code === letter || code === letter + 32;
 const canReact = (ply, i) => Math.abs(ply[i] - ply[i + 1]) === 32;
 
 export const reduce = initial => {
-  const [polymer, len] = [initial.slice(), initial.length];
+  const polymer = initial.slice();
   for (let i = 0; i < polymer.length - 1; )
     canReact(polymer, i) ? (polymer.splice(i, 2), --i) : ++i;
   return polymer.length;
