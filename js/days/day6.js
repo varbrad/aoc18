@@ -69,4 +69,20 @@ export const part1 = () => {
   return max;
 };
 
-export const part2 = () => 0;
+const limit = 10000;
+
+export const part2 = () => {
+  const [left, top, right, down] = getBounds();
+  let safe = 0;
+  for (let x = left - padding; x < right + padding; ++x) {
+    for (let y = top - padding; y < down + padding; ++y) {
+      // Cell
+      const total = points.reduce((sum, { point }) => {
+        const dist = distance(point, [x, y]);
+        return sum + dist;
+      }, 0);
+      if (total < 10000) safe++;
+    }
+  }
+  return safe;
+};
