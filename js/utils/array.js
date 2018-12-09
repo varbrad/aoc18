@@ -41,7 +41,8 @@ Object.defineProperty(Array.prototype, 'first', {
 Object.defineProperty(Array.prototype, 'until', {
   value: function(fn, ...include) {
     const len = this.length;
-    while (true) {
+    let maxLoops = 1e9; // 1_000_000_000 - 1 billion loopies
+    while (maxLoops-- > 0) {
       for (let i = 0; i < len; ++i) {
         const value = fn(this[i], ...include);
         if (value) return value;
