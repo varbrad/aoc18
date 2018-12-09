@@ -8,26 +8,20 @@ const [players, lastPoints] = readFile('input-9.txt')
   .map(Number);
 
 const solve = maxMarble => {
-  const start = new DLNode(0).selfLink();
-  const elves = {};
-  let nextMarble = 1;
-  let elfN = -1;
-  let current = start;
-  while (nextMarble < maxMarble) {
-    elfN = (elfN + 1) % players;
-    const marble = nextMarble++;
-    if (marble % 23 === 0) {
+  const [start, elves] = [new DLNode(0).selfLink(), {}];
+  let [nextMarble, elf, current] = [0, -1, start];
+  while (++nextMarble < maxMarble) {
+    elf = (elf + 1) % players;
+    if (nextMarble % 23 === 0) {
       current = current.traverse(-6);
-      elves[elfN] = (elves[elfN] || 0) + marble + current.remove();
+      elves[elf] = (elves[elf] || 0) + nextMarble + current.remove();
       current = current.left;
     } else {
-      current = current.traverse(2);
-      current.addToRight(new DLNode(marble));
+      current = current.traverse(2).addToRight(new DLNode(nextMarble));
     }
   }
   return Object.values(elves).max();
 };
 
 export const part1 = () => solve(lastPoints);
-
 export const part2 = () => solve(lastPoints * 100);
