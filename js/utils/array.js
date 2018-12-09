@@ -96,3 +96,9 @@ Object.defineProperty(Array.prototype, 'exclude', {
     return this.filter(actualFn);
   },
 });
+
+Object.defineProperty(Array.prototype, 'sum', {
+  value: function() {
+    return this.reduce((acc, val) => acc + val, 0);
+  },
+});
