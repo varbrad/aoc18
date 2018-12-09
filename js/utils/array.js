@@ -102,3 +102,12 @@ Object.defineProperty(Array.prototype, 'sum', {
     return this.reduce((acc, val) => acc + val, 0);
   },
 });
+
+Object.defineProperty(Array.prototype, 'max', {
+  value: function() {
+    return this.reduce(
+      (max, val) => (val > max || max === null ? val : max),
+      0,
+    );
+  },
+});
