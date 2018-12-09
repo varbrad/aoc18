@@ -47,4 +47,4 @@ export const part1 = () => {
   return output;
 };
 
-export const part2 = () => 0;
+export const part2 = () => '???';
