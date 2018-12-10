@@ -67,11 +67,15 @@ export const solve = () => {
   return [output.join('\n'), largestChain[0]];
 };
 
-const [string, seconds] = solve();
+let result = null;
 
 export const part1 = () => {
+  if (!result) result = solve();
   // eslint-disable-next-line no-console
-  console.log(string);
+  console.log(result[0]);
   return 'See above';
 };
-export const part2 = () => seconds;
+export const part2 = () => {
+  if (!result) result = solve();
+  return result[1];
+};

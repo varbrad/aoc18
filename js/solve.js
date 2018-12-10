@@ -16,7 +16,12 @@ const logTime = (day, part, fn) => {
   const time = process.hrtime();
   const result = fn();
   const elapsed = process.hrtime(time);
-  return [day, part, result, (elapsed[1] / 1000000).toFixed(1)];
+  return [
+    day,
+    part,
+    result,
+    (elapsed[0] * 1000 + elapsed[1] / 1000000).toFixed(1),
+  ];
 };
 
 const logs = [];
