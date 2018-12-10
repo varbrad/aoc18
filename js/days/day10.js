@@ -30,7 +30,7 @@ const getBounds = points =>
 export const solve = () => {
   let points = getInput();
   let largestChain = [0, 0];
-  for (let k = 0; k < 50000; ++k) {
+  for (let k = 0; k < 15000; ++k) {
     points.sort((a, b) => a[1] - b[1]);
     let maxChain = 1;
     for (let i = 0; i < points.length; ++i) {
