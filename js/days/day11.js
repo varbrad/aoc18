@@ -48,7 +48,7 @@ export const part2 = () => {
   let [max, cell] = [-1, -1];
   for (let y = 1; y <= 300; ++y) {
     for (let x = 1; x <= 300; ++x) {
-      for (let size = 2; size < 21; ++size) {
+      for (let size = 14; size < 18; ++size) {
         const count = sum(cells, x, y, size);
         if (count > max) {
           max = count;
