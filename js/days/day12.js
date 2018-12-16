@@ -46,16 +46,6 @@ const produce = (state, rules) => {
   return nextState;
 };
 
-const print = state =>
-  Object.entries(state)
-    .map(([key, value]) => ({
-      key,
-      value,
-    }))
-    .sort((a, b) => Number(a.key) - Number(b.key))
-    .map(({ value }) => value)
-    .join('');
-
 const sum = state =>
   Object.entries(state).reduce(
     (sum, [key, val]) => sum + (val === '#' ? Number(key) : 0),
