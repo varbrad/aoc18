@@ -49,26 +49,24 @@ export const part1 = () => {
   return score;
 };
 
-const lastNumber = (node, n) => {
-  let r = '';
-  for (let i = 0; i < n; ++i) {
-    r = node.value + r;
-    node = node.traverse(-1);
+const print = (node, len) => {
+  let l = '';
+  for (let i = 0; i < len; ++i) {
+    l += node.value;
+    node = node.right;
   }
-  return Number(r);
+  return l;
 };
 
 export const part2 = () => {
-  const inputLen = String(input).length;
   let start = new DLNode(3).selfLink();
   let end = start.addToRight(new DLNode(7)).right;
   let length = 2;
   const elves = [{ node: start }, { node: end }];
   //
-  while (true) {
+  for (let i = 0; i < 15000000; ++i) {
     [end, length] = step(elves, end, length);
-    let lastN = lastNumber(end, inputLen);
-    if (lastN === input) break;
   }
-  return length - inputLen;
+  const str = print(start, length);
+  return str.indexOf(String(input));
 };
