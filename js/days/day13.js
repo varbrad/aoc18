@@ -1,7 +1,5 @@
 import readFile from '../utils/readFile';
 
-const HOR = '-';
-const VER = '|';
 const FS = '/';
 const BS = '\\';
 const CROSS = '+';
